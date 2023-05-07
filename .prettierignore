@@ -1,0 +1,11 @@
+# Ignore artifacts:
+build
+coverage
+.gitignore
+package-lock.json
+/config
+/logs
+.eslintrc.cjs
+LICENCE
+readme.md
+

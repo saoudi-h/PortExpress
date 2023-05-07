@@ -1,0 +1,8 @@
+/config
+/logs
+/db
+/node_modules
+/.husky
+LICENCE
+package-lock.json
+readme.md
