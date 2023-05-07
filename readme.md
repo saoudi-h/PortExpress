@@ -1,4 +1,4 @@
-# portfolioServer
+# PortExpress
 Ce projet est une api Express.js pour la gestion du formulaire de contact de mon portfolio.
 Le serveur est configuré pour permettre l'intégration facile de nouveaux services.
 ## Fonctionnalités

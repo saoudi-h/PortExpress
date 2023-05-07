@@ -1,5 +1,9 @@
 node_modules
 .env
-logs/*
-db/*
+/logs/*
+!/logs/.gitkeep
+
+/db/*
+!/db/.gitkeep
+
 .husky/
