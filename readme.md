@@ -12,14 +12,22 @@ Le site comprend les fonctionnalités suivantes :
 * Notification en temps réel via Telegram.
 ## Pour installer le projet en local, suivez les étapes suivantes :
 1. Clonez le repo :
-`git clone https://github.com/saoudi-h/PortExpress.git`
+```bash
+git clone https://github.com/saoudi-h/PortExpress.git
+```
 2. Installez les dépendances nécessaires :
-`cd PortExpress`
-`npm install`
+```bash
+cd PortExpress
+npm install
+```
 3. Pour lancer le serveur en mode developpement, exécutez la commande suivante :
-`npm run dev`
+```bash
+npm run dev
+```
 3. Pour lancer le serveur en mode production, exécutez la commande suivante :
-`npm run start`
+```bash
+npm run start
+```
 ## Contributeurs
 Ce projet a été développé par Hakim Saoudi.
 ## Licence
