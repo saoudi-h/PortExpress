@@ -4,10 +4,13 @@ module.exports = {
     app: {
         port: 5000,
         host: 'localhost',
+        secure: false,
     },
     db: {
+        connectionString: 'mongodb://app_user:J2%3DQeo*TGG%3AmpOAnE@127.0.0.1:27017/portfolio',
         host: '127.0.0.1',
         port: '27017',
+        scheme: 'mongodb',
         name: 'portfolio',
         logLevel: "debug",
         userName: 'app_user',
@@ -20,7 +23,7 @@ module.exports = {
         token: process.env.TELEGRAM_BOT_TOKEN,
         groupId: process.env.TELEGRAM_GROUP_ID
     },
-    session:{
-        maxMessages:10,
+    session: {
+        maxMessages: 10,
     }
 }

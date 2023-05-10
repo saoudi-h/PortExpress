@@ -1,42 +1,29 @@
 import cors from "cors";
 import csrf from "csurf";
 import chalk from "chalk";
-import crypto from "crypto";
 import helmet from "helmet";
 import express from "express";
 import "./loadEnvironment.mjs";
 import config from "config";
-import session from "express-session";
 import contact from "./routes/contact.mjs";
 import csrfToken from "./routes/csrfToken.mjs";
 import logger from "./logger.mjs";
-
+import { sessionMiddleware } from "./db/sessionConn.mjs";
+import cookieParser from "cookie-parser";
 logger.info("Starting server ...");
 
 const app = express();
 
 // config
-
 const PORT = config.app.port;
-const link = `http://${config.app.host}:${PORT}`;
-const secretSession = crypto.randomBytes(64).toString("hex");
+const link = `${config.app.secure ? "https//" : "http//"}${
+  config.app.host
+}:${PORT}`;
 
 // Configuration de la session
-app.use(
-  session({
-    secret: secretSession,
-    resave: false,
-    saveUninitialized: false,
-    cookie: {
-      secure: false,
-      httpOnly: false,
-      maxAge: 24 * 60 * 60 * 1000,
-      sameSite: false,
-    },
-  })
-);
-
-app.use(csrf({}));
+app.use(sessionMiddleware);
+app.use(cookieParser());
+app.use(csrf({ cookie: true }));
 app.use(
   cors({
     origin: true,

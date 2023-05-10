@@ -1,4 +1,5 @@
 import express from "express";
+import logger from "../logger.mjs";
 
 const router = express.Router();
 
@@ -9,10 +10,9 @@ router.get("/token", (req, res) => {
       const csrfToken = req.csrfToken();
       req.session.csrfToken = csrfToken;
     }
-    console.log(req.session.csrfToken);
     res.json({ csrfToken: req.session.csrfToken });
   } catch (err) {
-    console.error(err);
+    logger.error(err);
     res
       .status(500)
       .json({ message: "Erreur lors de la génération du jeton CSRF" });
