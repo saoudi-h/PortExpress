@@ -96,7 +96,6 @@ router.post("/", checkOrigin, limiter, validationRules, async (req, res) => {
   }
 
   const groupId = config.telegram.groupId;
-  console.log(groupId);
 
   try {
     bot.sendMessage(

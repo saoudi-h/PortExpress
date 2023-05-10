@@ -9,7 +9,9 @@ module.exports = {
     host: process.env.DB_URL,
     port: process.env.DB_PORT,
     name: 'portfolio',
-    logLevel: "debug",
+    logLevel: 'debug',
+    userName: process.env.DB_USER_NAME,
+    userPwd: process.env.DB_USER_PWD
   },
   client: {
     url: process.env.CLIENT_AUTH_DOMAIN,
