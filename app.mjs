@@ -23,7 +23,7 @@ const link = `${config.app.secure ? "https//" : "http//"}${
 
 // Configuration de la session
 app.use(cookieParser());
-app.use(await sessionMiddleware);
+app.use(sessionMiddleware);
 app.use(csrf({ cookie: true }));
 app.use(
   cors({
@@ -31,8 +31,13 @@ app.use(
       return callback(null, true);
     },
     credentials: true,
+    optionsSuccessStatus: 200,
   })
 );
+
+// intercept OPTIONS method
+app.options("*", cors());
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(helmet());
