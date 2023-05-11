@@ -10,12 +10,13 @@ import csrfToken from "./routes/csrfToken.mjs";
 import logger from "./logger.mjs";
 import { sessionMiddleware } from "./db/sessionConn.mjs";
 import cookieParser from "cookie-parser";
+
 logger.info("Starting server ...");
 
 const app = express();
 
 // config
-const PORT = config.app.port;
+const PORT = process.env.PORT || config.app.port;
 const link = `${config.app.secure ? "https//" : "http//"}${
   config.app.host
 }:${PORT}`;
@@ -47,3 +48,5 @@ app.listen(PORT, () => {
   logger.debug(" ");
   logger.info("Server started.");
 });
+
+export default app;
