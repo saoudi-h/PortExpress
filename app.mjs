@@ -36,7 +36,7 @@ app.use(
 );
 
 // intercept OPTIONS method
-app.options("*", cors());
+app.options("*", cors({ origin: true, credentials: true }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
