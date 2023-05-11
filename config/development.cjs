@@ -20,7 +20,7 @@ module.exports = {
         url: 'http://localhost:3000'
     },
     telegram: {
-        token: process.env.TELEGRAM_BOT_TOKEN,
+        token: '6003675893:AAFgtq0aMc9cyiU64GG945H51JKbVciDVhU',
         groupId: process.env.TELEGRAM_GROUP_ID
     },
     session: {

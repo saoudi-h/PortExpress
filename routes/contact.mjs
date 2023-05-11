@@ -11,15 +11,15 @@ const bot = new TelegramBot(config.telegram.token, { polling: true });
 const router = express.Router();
 
 // Middleware 1:
-const checkOrigin = (req, res, next) => {
-  const referer = req.get("Referer");
-  const allowedOrigin = config.client.url;
-  if (referer && referer.startsWith(allowedOrigin)) {
-    next();
-  } else {
-    res.status(403).send("Forbidden");
-  }
-};
+// const checkOrigin = (req, res, next) => {
+//   const referer = req.get("Referer");
+//   const allowedOrigin = config.client.url;
+//   if (referer && referer.startsWith(allowedOrigin)) {
+//     next();
+//   } else {
+//     res.status(403).send("Forbidden");
+//   }
+// };
 
 // Middleware 2:
 const limiter = rateLimit({
@@ -65,7 +65,7 @@ const validationRules = [
 ];
 
 // Exemple de règles de validation pour un formulaire avec trois champs (nom, email, message)
-router.post("/", checkOrigin, limiter, validationRules, async (req, res) => {
+router.post("/", limiter, validationRules, async (req, res) => {
   // Traiter les erreurs de validation
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
