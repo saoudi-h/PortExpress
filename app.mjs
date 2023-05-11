@@ -27,7 +27,7 @@ app.use(sessionMiddleware);
 app.use(csrf({ cookie: true }));
 app.use(
   cors({
-    origin: true,
+    origin: config.client.url,
     credentials: true,
   })
 );
