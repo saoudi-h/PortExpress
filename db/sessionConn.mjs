@@ -1,8 +1,8 @@
 import session from "express-session";
 import MongoStore from "connect-mongo";
 import config from "config";
-import crypto from "crypto";
-const secretSession = crypto.randomBytes(64).toString("hex");
+// import crypto from "crypto";
+// const secretSession = crypto.randomBytes(64).toString("hex");
 
 console.log(config.db.connectionString);
 
@@ -20,13 +20,13 @@ try {
   console.error(`Failed to create session store: ${error.message}`);
 }
 const sessionConfig = {
-  secret: secretSession,
+  secret: config.session.secret,
   resave: false,
   saveUninitialized: false,
   cookie: {
-    // secure: config.app.secure, // Utiliser HTTPS si true
+    httpOnly: true,
     sameSite: false,
-    maxAge: 24 * 60 * 60 * 1000,
+    maxAge: config.session.duration,
   },
   store: sessionStore,
 };

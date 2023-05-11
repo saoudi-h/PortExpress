@@ -22,5 +22,9 @@ module.exports = {
   telegram: {
     token: process.env.TELEGRAM_BOT_TOKEN,
     groupId: process.env.TELEGRAM_GROUP_ID
-  }
+  },
+  session: {
+    secret:process.env.SESSION_SECRET,
+    maxMessages: 10
+}
 }

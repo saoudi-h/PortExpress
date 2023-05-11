@@ -23,11 +23,13 @@ const link = `${config.app.secure ? "https//" : "http//"}${
 
 // Configuration de la session
 app.use(cookieParser());
-app.use(sessionMiddleware);
+app.use(await sessionMiddleware);
 app.use(csrf({ cookie: true }));
 app.use(
   cors({
-    origin: true,
+    origin: function (origin, callback) {
+      return callback(null, true);
+    },
     credentials: true,
   })
 );

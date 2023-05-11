@@ -9,6 +9,7 @@ router.get("/token", (req, res) => {
     if (!req.session.csrfToken) {
       const csrfToken = req.csrfToken();
       req.session.csrfToken = csrfToken;
+      res.cookie("XSRF-TOKEN", csrfToken);
     }
     res.json({ csrfToken: req.session.csrfToken });
   } catch (err) {

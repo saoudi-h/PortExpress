@@ -24,6 +24,7 @@ module.exports = {
         groupId: process.env.TELEGRAM_GROUP_ID
     },
     session: {
-        maxMessages: 10,
+        secret:process.env.SESSION_SECRET,
+        maxMessages: 10
     }
 }
