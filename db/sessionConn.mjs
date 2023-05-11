@@ -24,7 +24,7 @@ const sessionConfig = {
   resave: false,
   saveUninitialized: false,
   cookie: {
-    secure: config.app.secure, // Utiliser HTTPS si true
+    // secure: config.app.secure, // Utiliser HTTPS si true
     sameSite: false,
     maxAge: 24 * 60 * 60 * 1000,
   },

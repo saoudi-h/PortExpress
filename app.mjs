@@ -22,8 +22,8 @@ const link = `${config.app.secure ? "https//" : "http//"}${
 }:${PORT}`;
 
 // Configuration de la session
-app.use(sessionMiddleware);
 app.use(cookieParser());
+app.use(sessionMiddleware);
 app.use(csrf({ cookie: true }));
 app.use(
   cors({
