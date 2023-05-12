@@ -4,8 +4,6 @@ import config from "config";
 // import crypto from "crypto";
 // const secretSession = crypto.randomBytes(64).toString("hex");
 
-console.log(config.db.connectionString);
-
 const sessionStorePromise = MongoStore.create({
   mongoUrl: config.db.connectionString,
   dbName: config.db.name,

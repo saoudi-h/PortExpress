@@ -25,22 +25,29 @@ const link = `${config.app.secure ? "https//" : "http//"}${
 app.use(cookieParser());
 app.use(sessionMiddleware);
 app.use(csrf({ cookie: true }));
-app.use(
-  cors({
-    origin: function (origin, callback) {
-      return callback(null, true);
-    },
-    credentials: true,
-    optionsSuccessStatus: 200,
-  })
-);
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    // Allow requests from any origin
+    callback(null, true);
+  },
+  credentials: true,
+  optionsSuccessStatus: 200,
+  methods: ["GET,HEAD,PUT,PATCH,POST,DELETE"],
+};
+app.use(cors(corsOptions));
 
 // intercept OPTIONS method
-app.options("*", cors({ origin: true, credentials: true }));
+app.options("*", cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+    crossOriginResourcePolicy: true,
+  })
+);
 
 // services
 app.use("/contact", contact);
