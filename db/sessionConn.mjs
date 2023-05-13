@@ -23,7 +23,7 @@ const sessionConfig = {
   saveUninitialized: false,
   cookie: {
     maxAge: config.session.duration,
-    smeSite: "none",
+    sameSite: "none",
     secure: true,
   },
   store: sessionStore,
