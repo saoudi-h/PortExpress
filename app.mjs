@@ -9,7 +9,7 @@ import contact from "./routes/contact.mjs";
 import csrfToken from "./routes/csrfToken.mjs";
 import logger from "./logger.mjs";
 import { sessionMiddleware } from "./db/sessionConn.mjs";
-import cookieParser from "cookie-parser";
+// import cookieParser from "cookie-parser";
 
 logger.info("Starting server ...");
 
@@ -25,14 +25,17 @@ const link = `${config.app.secure ? "https//" : "http//"}${
 
 if (config.isProdEnv) app.set("trust proxy", 1); // trust first proxy
 
-app.use(cookieParser());
+// app.use(cookieParser());
 app.use(sessionMiddleware);
 const csrfProtection = csrf({
-  cookie: {
-    secure: config.isProdEnv,
-    sameSite: config.isProdEnv ? "none" : "strict",
-  },
+  cookie: false,
 });
+// const csrfProtection = csrf({
+//   cookie: {
+//     secure: config.isProdEnv,
+//     sameSite: config.isProdEnv ? "none" : "strict",
+//   },
+// });
 
 app.use(csrfProtection);
 
