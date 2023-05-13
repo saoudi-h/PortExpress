@@ -21,10 +21,11 @@ const sessionConfig = {
   secret: config.session.secret,
   resave: false,
   saveUninitialized: false,
+  rolling: true,
   cookie: {
     maxAge: config.session.duration,
+    secure: config.env === "development" ? true : false,
     sameSite: "none",
-    secure: true,
   },
   store: sessionStore,
 };

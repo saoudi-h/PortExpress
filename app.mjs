@@ -22,9 +22,19 @@ const link = `${config.app.secure ? "https//" : "http//"}${
 }:${PORT}`;
 
 // Configuration de la session
+
+if (config.isProdEnv) app.set("trust proxy", 1); // trust first proxy
+
 app.use(cookieParser());
 app.use(sessionMiddleware);
-app.use(csrf({ cookie: true }));
+const csrfProtection = csrf({
+  cookie: {
+    secure: config.isProdEnv,
+    sameSite: config.isProdEnv ? "none" : "strict",
+  },
+});
+
+app.use(csrfProtection);
 
 const corsOptions = {
   origin: (origin, callback) => {
