@@ -23,8 +23,9 @@ const sessionConfig = {
   saveUninitialized: false,
   cookie: {
     httpOnly: true,
-    sameSite: false,
+    maxAge: 1000 * 60 * 60 * 24,
     maxAge: config.session.duration,
+    secure: true,
   },
   store: sessionStore,
 };

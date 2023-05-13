@@ -26,6 +26,12 @@ app.use(cookieParser());
 app.use(sessionMiddleware);
 app.use(csrf({ cookie: true }));
 
+app.use((req, res, next) => {
+  console.log("Session ID:", req.sessionID);
+  console.log("CSRF TOKEN:", req.session.csrfToken);
+  next();
+});
+
 const corsOptions = {
   origin: (origin, callback) => {
     // Allow requests from any origin
@@ -42,16 +48,17 @@ app.options("*", cors(corsOptions));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// services
+app.use("/csrf", csrfToken);
+app.use("/contact", contact);
+
 app.use(
   helmet({
     contentSecurityPolicy: false,
     crossOriginResourcePolicy: true,
   })
 );
-
-// services
-app.use("/contact", contact);
-app.use("/csrf", csrfToken);
 
 // Démarrer le serveur
 app.listen(PORT, () => {
