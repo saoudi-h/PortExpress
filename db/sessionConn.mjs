@@ -24,8 +24,8 @@ const sessionConfig = {
   rolling: true,
   cookie: {
     maxAge: config.session.duration,
-    secure: config.env === "development" ? true : false,
-    httpOnly: config.env === "development" ? true : false,
+    secure: config.isProduction,
+    httpOnly: config.isProduction,
     sameSite: "none",
   },
   store: sessionStore,

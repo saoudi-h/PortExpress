@@ -23,7 +23,7 @@ const link = `${config.app.secure ? "https//" : "http//"}${
 
 // Configuration de la session
 
-if (config.isProdEnv) app.set("trust proxy", 1); // trust first proxy
+if (config.isProduction) app.set("trust proxy", 1); // trust first proxy
 
 // app.use(cookieParser());
 app.use(sessionMiddleware);
